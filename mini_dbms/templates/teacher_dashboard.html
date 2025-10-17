@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Teacher Dashboard</span>
+            <a href="{{ url_for('logout') }}" class="btn btn-light btn-sm">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="card shadow-sm p-3 mb-4">
+            <h5>Add Student</h5>
+            <form class="row g-3" method="POST" action="{{ url_for('add_student') }}">
+                <div class="col-md-5">
+                    <input type="text" name="name" class="form-control" placeholder="Student Name" required>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" name="course" class="form-control" placeholder="Course" required>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-success w-100">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card shadow-sm p-3 mb-4">
+            <h5>Search Students</h5>
+            <form class="d-flex" method="POST" action="{{ url_for('search_student') }}">
+                <input type="text" name="keyword" class="form-control me-2" placeholder="Search by name or course">
+                <button class="btn btn-outline-primary">Search</button>
+            </form>
+        </div>
+
+        <div class="card shadow-sm p-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5>Student Records</h5>
+                <a href="{{ url_for('export_students') }}" class="btn btn-outline-success btn-sm">Export to CSV</a>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student[0] }}</td>
+                        <td>{{ student[1] }}</td>
+                        <td>{{ student[2] }}</td>
+                        <td>
+                            <a href="{{ url_for('edit_student', id=student[0]) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{{ url_for('delete_student', id=student[0]) }}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
