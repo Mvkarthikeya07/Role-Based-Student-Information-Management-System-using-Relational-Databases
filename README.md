@@ -1,4 +1,4 @@
-🎓 Role-Based Academic Database Management System for Student Information
+🎓 Role-Based Student Information Management System using Relational Databases
 
 A Role-Based Database Management System for Academic Institutions
 
