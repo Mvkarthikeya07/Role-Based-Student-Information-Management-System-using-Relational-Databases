@@ -1,4 +1,4 @@
-🎓 Student Management System
+🎓 Role-Based Academic Database Management System for Student Information
 
 A Role-Based Database Management System for Academic Institutions
 
